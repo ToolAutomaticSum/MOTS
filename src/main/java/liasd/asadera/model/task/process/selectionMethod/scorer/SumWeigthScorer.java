@@ -13,7 +13,6 @@ public class SumWeigthScorer extends Scorer {
 
 	public SumWeigthScorer(AbstractSelectionMethod method) throws SupportADNException {
 		super(method);
-
 	}
 
 	@Override

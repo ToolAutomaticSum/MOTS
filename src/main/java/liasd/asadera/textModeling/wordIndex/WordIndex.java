@@ -2,10 +2,13 @@ package main.java.liasd.asadera.textModeling.wordIndex;
 
 import java.util.HashMap;
 
+import main.java.liasd.asadera.exception.NoDocumentToProcessIDFException;
+
 public class WordIndex implements Comparable<WordIndex> {
 
 	private int iD;
 	private double weight;
+	private int nbDocument;
 	private int nbDocumentWithWordSeen;
 	private float idf;
 
@@ -17,6 +20,11 @@ public class WordIndex implements Comparable<WordIndex> {
 
 	public WordIndex() {
 		super();
+	}
+	
+	public WordIndex(String word, int nbDocumentWithWordSeen, int nbDocument) {
+		this.nbDocument = nbDocument;
+		this.nbDocumentWithWordSeen = nbDocumentWithWordSeen;
 	}
 
 	public WordIndex(String word, int nbDocumentWithWordSeen) {
@@ -81,13 +89,21 @@ public class WordIndex implements Comparable<WordIndex> {
 		return Math.log(a);
 	}
 
-	public float getIdf() {
-		return idf;
+	public double getIdf() throws NoDocumentToProcessIDFException {
+		if (idf != 0)
+			return idf;
+		if (this.getNbDocument() == 0)
+			throw new NoDocumentToProcessIDFException();
+		return getIdf(this.getNbDocument());
+	}
+	
+	public void setIdf(double idf) {
+		this.idf = (float) idf;
 	}
 
-	public void setIdf(float idf) {
+	/*public void setIdf(float idf) {
 		this.idf = idf;
-	}
+	}*/
 
 	public double getTf() {
 		return (double) getNbOccurence();
@@ -99,6 +115,14 @@ public class WordIndex implements Comparable<WordIndex> {
 
 	public int getNbDocumentWithWordSeen() {
 		return nbDocumentWithWordSeen + docOccurences.size();
+	}
+
+	public int getNbDocument() {
+		return nbDocument;
+	}
+
+	public void setNbDocument(int nbDocument) {
+		this.nbDocument = nbDocument;
 	}
 
 	public double getWeight() {

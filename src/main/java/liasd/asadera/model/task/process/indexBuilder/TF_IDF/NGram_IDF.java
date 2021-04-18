@@ -148,8 +148,10 @@ public class NGram_IDF extends AbstractIndexBuilder<NGram> implements IndexBased
 						senNG = NGram_IDF.getNGrams(n, indexWord, sen, filter);
 					Set<NGram> indexedSenNG = new LinkedHashSet<NGram>();
 					for (NGram ng : senNG) {
-						if (!index.containsKey(ng.getWord()))
+						if (!index.containsKey(ng.getWord())) {
 							index.put(ng);
+							ng.setNbDocument(index.getNbDocument());
+						}
 						else
 							ng = index.get(ng.getWord());
 						ng.addDocumentOccurence(corpus.getiD(), textModel.getiD());
@@ -272,8 +274,10 @@ public class NGram_IDF extends AbstractIndexBuilder<NGram> implements IndexBased
 						else
 							senNG = NGram_IDF.getNGrams(n, indexWord, sen, filter);
 						for (NGram ng : senNG) {
-							if (!index.containsKey(ng.getWord()))
+							if (!index.containsKey(ng.getWord())) {
 								index.put(ng);
+								ng.setNbDocument(index.getNbDocument());
+							}
 							else
 								ng = index.get(ng.getWord());
 							ng.addDocumentOccurence(corpus.getiD(), textModel.getiD());
