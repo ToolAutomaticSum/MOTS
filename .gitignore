@@ -2,7 +2,6 @@
 #	FOLDER       
 ######################
 target
-conf
 output
 docs/lemmaModels
 docs/output
