@@ -1,0 +1,30 @@
+######################
+#	FOLDER       
+######################
+target
+conf
+output
+docs/lemmaModels
+docs/output
+src/main/resources/TEXTEAV
+
+######################
+#	JUNK       
+######################
+*.bin
+*.pyc
+*.swp
+fitness_scores.txt
+conf/testFrench2.xml
+hlda.state
+tempILP0.ilp_in
+tempILP0.ilp_out
+
+/serialized/
+/serialized_light/
+/results_MOTS
+/results_merged_MOTS_100_words
+/results_merged_MOTS_50_words
+/results_merged_MOTS_without_highlight_100_words
+/results_merged_MOTS_without_highlight_50_words
+/lincdev
